@@ -1,0 +1,37 @@
+﻿@{
+    Layout = "~/_SiteLayout.cshtml";
+    Page.Title = "Music Scene";
+}
+
+@{       var db= Database.Open("StarterSite");      
+         var sqlQ = "SELECT * FROM Artist where genre = 'Rock'";     
+         var data = db.Query(sqlQ);     }   
+
+<hgroup class="title">
+    <h1>@Page.Title.</h1>
+    <h2>The easy way to find music</h2>
+</hgroup>
+
+<article>
+     <div id="movieslist">      
+        <ol>  
+            @foreach(var row in data) 
+             {
+                <li><a href="#">@row.ArtistName</a></li>
+              }     
+                </ol>    
+            
+</article>
+
+<aside>
+    <h3>Music Genres</h3>
+    <p>
+        Show me more...
+    </p>
+    <ul>
+        <li><a href="~/GigsPop">Pop</a></li>
+        <li><a href="~/GigsHipHop">Hip Hop</a></li>
+        <li><a href="~/GigsRock">Rock</a></li>
+        <li><a href="~/GigsMetal">Metal</a></li>
+    </ul>
+</aside>
